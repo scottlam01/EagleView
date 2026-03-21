@@ -2,6 +2,12 @@
 data/raw/*
 data/processed/*
 
+# Ignore environment variables
+*.env
+
+# Ignore specific files
+create_database.sql
+
 # Keep folder structure
 !data/raw/.gitkeep
 !data/processed/.gitkeep
