@@ -17,6 +17,7 @@ CREATE TABLE jobs (
 	occ_code TEXT,
 	tot_emp INT,
 	jobs_1000 FLOAT,
+	loc_quotient FLOAT,
 	h_mean FLOAT,
 	a_mean FLOAT,
 	h_pct10 FLOAT,
