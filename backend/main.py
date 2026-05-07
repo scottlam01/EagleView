@@ -1,7 +1,18 @@
 from fastapi import FastAPI
 from backend.database import get_connection
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+# Allows frontend (React on localhost:5173) to communicate with 
+# this backend API from a different origin (different ports)
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # base route tests to see if running
 @app.get("/")
@@ -11,29 +22,26 @@ def root():
 # ======= Routes =======
 # -- Initial search --
 @app.get("/occupations")
-def get_jobs():
+def get_jobs(q: str):
   conn = get_connection()
   cur = conn.cursor()
-  
-  cur.execute("""
-              SELECT occ_code, occ_title
-              FROM occupations
-              WHERE LOWER(occ_title) LIKE LOWER(%s)
-              LIMIT 20;""")
-  rows = cur.fetchall()
 
+  cur.execute("""
+      SELECT DISTINCT occ_code, occ_title
+      FROM occupations
+      WHERE occ_title ILIKE %s
+      ORDER BY occ_title
+      LIMIT 10;
+  """, (f"%{q}%",))
+
+  results = cur.fetchall()
   cur.close()
   conn.close()
 
-  # convert to JSON
-  result = []
-  for row in rows:
-    result.append({
-      "occ_code": row[0],
-      "occ_title": row[1]
-    })
-
-  return result
+  return [
+      {"occ_code": r[0], "occ_title": r[1]}
+      for r in results
+  ]
 
 # -- Map Data --
 # input: occ_code
