@@ -1,7 +1,8 @@
+import { Home } from './pages/Home';
+
+// root,  layout,  router
 export default function App() {
   return(
-    <h1>
-      Hello World
-    </h1>
+    <Home/>
   )
 }

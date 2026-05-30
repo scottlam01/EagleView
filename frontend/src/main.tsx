@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 
+// starting point of React app, mounts React into HTML page
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App />

@@ -1,0 +1,12 @@
+.hero {
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  width: 50rem;
+}
+
+.greyLine {
+  margin:0;
+}
