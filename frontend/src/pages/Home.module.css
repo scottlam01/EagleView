@@ -1,10 +1,15 @@
 .hero {
-  display: flex;
-  justify-content: center;
+  justify-content: center; /* center items horizontally */
+  align-content: start; /* center items at the top of the page */
+  flex-direction: column; /* have items stack vertically */
+  row-gap: 8rem; /* spacing between items */
+  padding-top: 25vh; /* have items be 35% from the top */
+  display: grid;
+  min-height: 90vh;
 }
 
 .logo {
-  width: 50rem;
+  width: 35rem;
 }
 
 .greyLine {

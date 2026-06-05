@@ -1,5 +1,6 @@
-import logo from '../assets/logo.png';
+import logo from '../assets/logo_crop.png';
 import Footer from '../components/layout/Footer';
+import Searchbar from '../components/search/Searchbar';
 import styles from './Home.module.css';
 
 export function Home() {
@@ -8,15 +9,18 @@ export function Home() {
 
       {/* Container for logo and searchbar */}
       <section className={styles.hero}>
-        <div>
-          <img src={logo} className={styles.logo} alt="Logo" />
-        </div>
         
+        <img src={logo} className={styles.logo} alt="Logo" />
+
+        <Searchbar />
+
       </section>
+      
+      {/* line break */}
+      <hr className = {styles.greyLine}></hr>
 
-    <hr className = {styles.greyLine}></hr>
-
-    <Footer />
+      {/* Footer */}
+      <Footer />
 
     </main>
   )
