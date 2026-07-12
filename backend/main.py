@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from backend.database import get_connection
 from fastapi.middleware.cors import CORSMiddleware
-
+from backend.states import STATE_MAP, STATE_NAMES
 app = FastAPI()
 
 app.add_middleware(
@@ -20,7 +20,7 @@ def root():
   return {"message": "server is running"}
 
 # ======= Routes =======
-# -- Initial search --
+# -- Occupations --
 @app.get("/occupations")
 def get_jobs(q: str):
   conn = get_connection()
@@ -30,8 +30,7 @@ def get_jobs(q: str):
       SELECT DISTINCT occ_code, occ_title
       FROM occupations
       WHERE occ_title ILIKE %s
-      ORDER BY occ_title
-      LIMIT 10;
+      ORDER BY occ_title;
   """, (f"%{q}%",))
 
   results = cur.fetchall()
@@ -39,7 +38,44 @@ def get_jobs(q: str):
   conn.close()
 
   return [
-      {"occ_code": r[0], "occ_title": r[1]}
+    {"occ_code": r[0], "occ_title": r[1]}
+    for r in results
+  ]
+
+# -- Cities --
+# cities by area_title
+@app.get("/areas")
+def get_areas(q: str):
+  conn = get_connection()
+  cur = conn.cursor()
+
+  # Check if user typed a full state name
+  search = q.lower().strip()
+  state = STATE_MAP.get(search)
+
+  if state:
+      cur.execute("""
+          SELECT cbsa_code, area_title
+          FROM areas
+          WHERE prim_state = %s
+          ORDER BY area_title;
+      """, (state,))
+      results = cur.fetchall()
+      cur.close()
+      conn.close()
+  else:
+    cur.execute("""
+        SELECT cbsa_code, area_title
+        FROM areas
+        WHERE area_title ILIKE %s
+        LIMIT 10;
+    """, (f"%{q}%",))
+    results = cur.fetchall()
+    cur.close()
+    conn.close()
+
+  return [
+      {"cbsa_code": r[0], "area_title": r[1]}
       for r in results
   ]
 

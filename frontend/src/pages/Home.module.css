@@ -5,7 +5,7 @@
   row-gap: 8rem; /* spacing between items */
   padding-top: 25vh; /* have items be 35% from the top */
   display: grid;
-  min-height: 90vh;
+  min-height: 85vh;
 }
 
 .logo {
