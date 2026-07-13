@@ -1,8 +1,14 @@
+import { Routes, Route } from "react-router-dom";
 import { Home } from './pages/Home';
+import { Dashboard } from './pages/Dashboard';
+
 
 // root,  layout,  router
 export default function App() {
   return(
-    <Home/>
-  )
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+    </Routes>
+  );
 }

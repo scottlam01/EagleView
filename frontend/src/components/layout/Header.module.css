@@ -1,0 +1,16 @@
+.header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.logo {
+  width: 15rem;
+}
+
+.search {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}

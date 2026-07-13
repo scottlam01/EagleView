@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import styles from './Searchbar.module.css';
 
 export default function Searchbar () {
@@ -22,6 +23,8 @@ export default function Searchbar () {
   const occupationSearchRef = useRef<HTMLDivElement>(null);
   const areaSearchRef = useRef<HTMLDivElement>(null);
 
+  const navigate = useNavigate();
+
   // fetch occupations as user types
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -41,22 +44,29 @@ export default function Searchbar () {
   }, [queryAreas]);
 
   // Close occupation dropdown
-useEffect(() => {
-  function handleOccupationClickOutside(event: MouseEvent) {
-    if (
-      occupationSearchRef.current &&
-      !occupationSearchRef.current.contains(event.target as Node)
-    ) {
-      setOccupationSuggestions([]);
+  useEffect(() => {
+    function handleOccupationClickOutside(event: MouseEvent) {
+      if (
+        occupationSearchRef.current &&
+        !occupationSearchRef.current.contains(event.target as Node)
+      ) {
+        setOccupationSuggestions([]);
+      }
     }
-  }
 
-  document.addEventListener("mousedown", handleOccupationClickOutside);
+    document.addEventListener("mousedown", handleOccupationClickOutside);
 
-  return () => {
-    document.removeEventListener("mousedown", handleOccupationClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleOccupationClickOutside);
+    };
+  }, []);
+
+ 
+
+  // search button navigates to dashboard
+  const handleSearch = () => {
+    navigate("/dashboard");
   };
-}, []);
 
 
 // Close area dropdown
@@ -170,7 +180,11 @@ useEffect(() => {
 
       
     </div>
-    <button />
+    
+    <button onClick={handleSearch}>
+      :D
+    </button>
+    
     </div>
   )
 }

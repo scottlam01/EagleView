@@ -15,9 +15,6 @@ export function Home() {
         <Searchbar />
 
       </section>
-      
-      {/* line break */}
-      <hr className = {styles.greyLine}></hr>
 
       {/* Footer */}
       <Footer />
