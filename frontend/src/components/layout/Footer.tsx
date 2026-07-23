@@ -8,11 +8,9 @@ export default function Footer () {
 
       {/* footer */}
       <footer className = {styles.footer}>
-        <div className = {styles.container}>
-          <p className = {styles.text}>
+          <div className = {styles.text}>
             © 2026 EagleView | Built by Scott Lam | <a href="https://github.com/scottlam01" target="_blank">GitHub</a>
-          </p>
-        </div>
+          </div>
       </footer>
     </div>
   )

@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import styles from './Searchbar.module.css';
+import { toast } from "sonner";
 
 export default function Searchbar () {
 
@@ -19,6 +20,9 @@ export default function Searchbar () {
 
   const [occupationSuggestions, setOccupationSuggestions] = useState<Occupation[]>([]);
   const [areaSuggestions, setAreaSuggestions] = useState<Area[]>([]);
+
+  const [selectedCbsaCode, setSelectedCbsaCode] = useState<string | null>(null);
+  const [selectedOccCode, setSelectedOccCode] = useState<string | null>(null);
 
   const occupationSearchRef = useRef<HTMLDivElement>(null);
   const areaSearchRef = useRef<HTMLDivElement>(null);
@@ -63,10 +67,32 @@ export default function Searchbar () {
 
  
 
-  // search button navigates to dashboard
-  const handleSearch = () => {
-    navigate("/dashboard");
-  };
+// search button verifies valid cbsa and occ code then navigates to dashboard
+const handleSearch = async () => {
+
+  if (!selectedCbsaCode || !selectedOccCode) {
+    toast.error("Please select a valid occupation and location from the dropdown.");
+    return;
+  }
+
+  const response = await fetch(
+  `http://localhost:8000/validate_search?cbsa_code=${selectedCbsaCode}&occ_code=${selectedOccCode}`
+  );
+
+  const data = await response.json();
+
+  if (!data) {
+    toast.error("No data available for this occupation and location. Select valid occupation and location from dropdown.");
+    return;
+  }
+
+  navigate(`/dashboard/${selectedCbsaCode}/${selectedOccCode}`, {
+    state: {
+      occupation: queryOccupation,
+      area: queryAreas,
+    },
+  });
+};
 
 
 // Close area dropdown
@@ -141,6 +167,8 @@ useEffect(() => {
                 key={occupation.occ_code}
                 onMouseDown={() => {
                   setQueryOccupation(occupation.occ_title);
+                  setSelectedOccCode(occupation.occ_code);
+                  console.log(selectedOccCode);
                   setOccupationSuggestions([]);
                 }}
               >
@@ -169,6 +197,7 @@ useEffect(() => {
                 key={areas.cbsa_code}
                 onMouseDown={() => {
                   setQueryAreas(areas.area_title);
+                  setSelectedCbsaCode(areas.cbsa_code);
                   setAreaSuggestions([]);
                 }}
               >
