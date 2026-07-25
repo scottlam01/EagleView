@@ -1,0 +1,35 @@
+.highlightsCard {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.highlight {
+  text-align: center;
+  position: relative;
+}
+
+.tooltip {
+  font-size: 1rem;
+  display: none;
+
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 15rem;
+
+  background: white;
+  color: black;
+
+  padding: 5px;
+  border: 1px solid #E5E7EB;
+}
+
+.highlight:hover .tooltip {
+  display: block;
+}
+
+.highlight:not(:last-child) {
+  border-right: 2px solid #E5E7EB;
+}
+

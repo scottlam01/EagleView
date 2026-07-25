@@ -4,6 +4,7 @@ import styles from './Dashboard.module.css';
 import SummaryCard from '../components/dashboard/SummaryCard';
 import { useParams, useLocation } from "react-router-dom";
 import { useEffect, useState } from 'react';
+import HighlightsCard from '../components/dashboard/HighlightsCard';
 export function Dashboard() {
 
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
@@ -83,8 +84,6 @@ export function Dashboard() {
     all_cbsa: AllCbsa[];
   };
 
-
-
   // grabs occupation and area from state
   const location = useLocation();
   const { occupation, area } = location.state ?? {
@@ -134,6 +133,16 @@ export function Dashboard() {
         demand_score={dashboardData.scores.demand_score}
         salary_score={dashboardData.scores.salary_score}
         cost_score={dashboardData.scores.cost_score}/>
+
+        <div className={styles.HighlightsCardContainer}>
+          <HighlightsCard 
+          a_median={dashboardData.cur_cbsa.a_median}
+          real_salary={dashboardData.cur_cbsa.real_salary} 
+          tot_emp={dashboardData.cur_cbsa.tot_emp}
+          jobs_1000={dashboardData.cur_cbsa.jobs_1000}
+          rpp_all={dashboardData.cur_cbsa.rpp_all}>
+          </HighlightsCard>
+        </div>
       </main>
     
       {/* Footer */}

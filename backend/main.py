@@ -129,7 +129,7 @@ def get_detail_data(occ_code: str, cbsa_code: int):
 
           CASE
               WHEN r.rpp_all IS NOT NULL AND r.rpp_all != 0
-              THEN j.a_median / r.rpp_all
+              THEN j.a_median / (r.rpp_all / 100.0)
               ELSE NULL
           END AS real_salary,
 
