@@ -1,13 +1,11 @@
 import Card from "../ui/Card";
 import styles from "./SummaryCard.module.css";
+import { type DashboardData } from "../../pages/Dashboard";
 
 type SummaryCardProps = {
+  dashboardData: DashboardData;
   occupation: string;
   area: string;
-  opportunity_score: number;
-  demand_score: number;
-  salary_score: number;
-  cost_score: number;
 };
 
 // Returns string describing opportunity score
@@ -36,22 +34,19 @@ function describeScore (demand_score: number, salary_score: number, cost_score: 
 }
 
 export default function SummaryCard({
+  dashboardData,
   occupation,
-  area,
-  opportunity_score,
-  demand_score,
-  salary_score,
-  cost_score
+  area
 }: SummaryCardProps) {
 
-  console.log(describeScore(demand_score, salary_score, cost_score));
+  console.log(describeScore(dashboardData.scores.demand_score, dashboardData.scores.salary_score, dashboardData.scores.cost_score));
 
   return (
     <Card>
       <h2>Occupation: {occupation}</h2>
       <p>CBSA: {area}</p>
-      <p>Opportunity Score: {opportunity_score}</p>
-      <p>{describeScore(demand_score, salary_score, cost_score)}</p>
+      <p>Opportunity Score: {dashboardData.scores.opportunity_score}</p>
+      <p>{describeScore(dashboardData.scores.demand_score, dashboardData.scores.salary_score, dashboardData.scores.cost_score)}</p>
     </Card>
   );
 }

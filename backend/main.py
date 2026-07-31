@@ -119,6 +119,8 @@ def get_detail_data(occ_code: str, cbsa_code: int):
   # 1. Query current CBSA statistics
   cur.execute("""
       SELECT
+          o.occ_title,
+          a.area_title,
           j.tot_emp,
           j.jobs_1000,
           j.loc_quotient,
@@ -139,6 +141,10 @@ def get_detail_data(occ_code: str, cbsa_code: int):
       FROM jobs j
       JOIN rpp r
           ON j.cbsa_code = r.cbsa_code
+      JOIN occupations o
+          ON j.occ_code = o.occ_code
+      JOIN areas a
+          ON j.cbsa_code = a.cbsa_code
 
       WHERE j.occ_code = %s
         AND j.cbsa_code = %s;
@@ -271,16 +277,18 @@ def get_detail_data(occ_code: str, cbsa_code: int):
     "cur_cbsa": {
         "cbsa_code": cbsa_code,
         "occ_code": occ_code,
-        "tot_emp": q1row[0],
-        "jobs_1000": q1row[1],
-        "loc_quotient": q1row[2],
-        "h_median": q1row[3],
-        "a_pct25": q1row[4],
-        "a_median": q1row[5],
-        "a_pct75": q1row[6],
-        "real_salary": round(q1row[7], 2) if q1row[7] is not None else None,
-        "rpp_all": q1row[8],
-        "rpp_housing": q1row[9]
+        "occ_title": q1row[0],
+        "area_title": q1row[1],
+        "tot_emp": q1row[2],
+        "jobs_1000": q1row[3],
+        "loc_quotient": q1row[4],
+        "h_median": q1row[5],
+        "a_pct25": q1row[6],
+        "a_median": q1row[7],
+        "a_pct75": q1row[8],
+        "real_salary": round(q1row[9], 2) if q1row[9] is not None else None,
+        "rpp_all": q1row[10],
+        "rpp_housing": q1row[11]
     },
 
     "scores": {

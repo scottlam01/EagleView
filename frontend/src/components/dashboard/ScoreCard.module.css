@@ -1,0 +1,38 @@
+.tabsContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+}
+
+.scoreCardContent{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 2rem;
+}
+
+.tab,
+.activeTab{
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  width: 150px;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #d9d9d9;
+  border-bottom: none;
+  border-radius: 5px 5px 0 0;
+  cursor: pointer;
+  background-color: white;
+
+  transition: border-color .25s ease;
+}
+
+.tab:hover {
+  border-color: #2563EB;
+}
+
+.activeTab{
+  border: 2px solid #2563EB;
+  border-bottom: none;
+}

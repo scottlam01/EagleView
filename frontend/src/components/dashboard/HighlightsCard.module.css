@@ -10,12 +10,9 @@
 
 .tooltip {
   font-size: 1rem;
-  display: none;
-
   position: absolute;
   bottom: 100%;
   left: 50%;
-  transform: translateX(-50%);
   width: 15rem;
 
   background: white;
@@ -23,10 +20,17 @@
 
   padding: 5px;
   border: 1px solid #E5E7EB;
+
+  opacity: 0;
+  transform: translateX(-50%) translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+
+  pointer-events: none; /* moving mouse over where tooltip should be doesn't bring up tooltip */
 }
 
 .highlight:hover .tooltip {
-  display: block;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 .highlight:not(:last-child) {

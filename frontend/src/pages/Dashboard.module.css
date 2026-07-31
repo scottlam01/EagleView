@@ -1,16 +1,14 @@
 .page {
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 }
 
 .dashboard {
-  min-height: 74.5vh;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   overflow-y: auto;
   margin: 0 10rem;
-  display: flex;
-  flex-direction: column;
   gap: 1rem;
 }
 

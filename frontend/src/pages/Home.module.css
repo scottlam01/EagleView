@@ -1,9 +1,9 @@
 .hero {
-  justify-content: center; /* center items horizontally */
-  align-content: start; /* center items at the top of the page */
-  flex-direction: column; /* have items stack vertically */
-  row-gap: 8rem; /* spacing between items */
-  padding-top: 25vh; /* have items be 35% from the top */
+  justify-content: center;
+  align-content: start;
+  flex-direction: column; 
+  row-gap: 8rem; 
+  padding-top: 25vh; 
   display: grid;
   min-height: 85vh;
 }

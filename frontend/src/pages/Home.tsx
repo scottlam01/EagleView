@@ -5,7 +5,7 @@ import styles from './Home.module.css';
 
 export function Home() {
   return(
-    <main>
+    <div>
 
       {/* Container for logo and searchbar */}
       <section className={styles.hero}>
@@ -19,6 +19,6 @@ export function Home() {
       {/* Footer */}
       <Footer />
 
-    </main>
+    </div>
   )
 }
