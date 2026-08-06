@@ -236,9 +236,9 @@ def calculate_opportunity_score(cbsa_data):
   for city in cbsa_data:
       
       scores = [
-            (city["demand_score"], 0.35),
-            (city["salary_score"], 0.30),
-            (city["cost_score"], 0.20)
+            (city["demand_score"], 0.4),
+            (city["salary_score"], 0.35),
+            (city["cost_score"], 0.25)
         ]
 
       weighted_scores = [

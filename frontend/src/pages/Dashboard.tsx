@@ -6,6 +6,8 @@ import { useParams, useLocation } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import HighlightsCard from '../components/dashboard/HighlightsCard';
 import ScoreCard from '../components/dashboard/ScoreCard';
+import Card from '../components/ui/Card';
+import PlotlyCard from '../components/dashboard/PlotlyCard';
 
 // collectively holds all dashboard data
 export type DashboardData = {
@@ -141,6 +143,8 @@ export function Dashboard() {
         <div className={styles.HighlightsCardContainer}>
           <HighlightsCard dashboardData={dashboardData}></HighlightsCard>
         </div>
+
+        <PlotlyCard dashboardData={dashboardData}></PlotlyCard>
 
         <ScoreCard dashboardData={dashboardData}></ScoreCard>
         
