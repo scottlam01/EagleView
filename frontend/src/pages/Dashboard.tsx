@@ -8,6 +8,7 @@ import HighlightsCard from '../components/dashboard/HighlightsCard';
 import ScoreCard from '../components/dashboard/ScoreCard';
 import Card from '../components/ui/Card';
 import PlotlyCard from '../components/dashboard/PlotlyCard';
+import MarketDetailsCard from '../components/dashboard/MarketDetailsCard';
 
 // collectively holds all dashboard data
 export type DashboardData = {
@@ -147,6 +148,10 @@ export function Dashboard() {
         <PlotlyCard dashboardData={dashboardData}></PlotlyCard>
 
         <ScoreCard dashboardData={dashboardData}></ScoreCard>
+
+        <MarketDetailsCard dashboardData={dashboardData}></MarketDetailsCard>
+
+        <></>
         
       </div>
     

@@ -22,15 +22,21 @@ function describeScore (demand_score: number, salary_score: number, cost_score: 
     { max: 60,  value: "Average" },
     { max: 80,  value: "Above Average" },
     { max: 100, value: "Exceptional"},
-    { max: Infinity, value: "80 and up" } // Catch-all for everything else
+  ];
+  const affordabilityRanges: DescriptorRange[] = [
+    { max: 20, value: "Very Expensive" },
+    { max: 40, value: "Expensive" },
+    { max: 60, value: "Average" },
+    { max: 80, value: "Affordable" },
+    { max: 100, value: "Very Affordable" },
   ];
   
   // get word to describe each score
-  const demand_descriptor = descriptorRanges.find(range => demand_score < range.max)?.value ?? "n/a";
-  const salary__descriptor = descriptorRanges.find(range => salary_score < range.max)?.value ?? "n/a";
-  const cost__descriptor = descriptorRanges.find(range => cost_score < range.max)?.value ?? "n/a";
+  const demand_descriptor = descriptorRanges.find(range => demand_score <= range.max)?.value ?? "n/a";
+  const salary__descriptor = descriptorRanges.find(range => salary_score <= range.max)?.value ?? "n/a";
+  const cost__descriptor = affordabilityRanges.find(range => cost_score <= range.max)?.value ?? "n/a";
 
-  return `${demand_descriptor} Demand, ${salary__descriptor} Salary, ${cost__descriptor} Affordability`;
+  return `${demand_descriptor} Demand, ${salary__descriptor} Salary, ${cost__descriptor}`;
 }
 
 export default function SummaryCard({
