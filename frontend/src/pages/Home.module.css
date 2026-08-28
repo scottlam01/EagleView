@@ -1,0 +1,14 @@
+.hero {
+  justify-content: center;
+  align-content: start;
+  flex-direction: column; 
+  row-gap: 8rem; 
+  padding-top: 25vh; 
+  display: grid;
+  min-height: 85vh;
+}
+
+.logo {
+  width: 35rem;
+}
+

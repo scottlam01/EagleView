@@ -1,0 +1,17 @@
+.page {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow-y: auto;
+  margin: 0 10rem;
+  gap: 1rem;
+}
+
+.header {
+  margin-bottom: 2rem;
+}

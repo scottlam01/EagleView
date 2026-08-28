@@ -1,0 +1,30 @@
+.marketDetailsHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  gap: 1rem;
+}
+
+.marketDetailsHeader:hover {
+  cursor: pointer;
+}
+
+.chevron {
+  font-size: 0.9rem;
+}
+
+.value{
+  text-align: left;
+}
+
+.label {
+  text-align: left;
+  padding-left: 1rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
