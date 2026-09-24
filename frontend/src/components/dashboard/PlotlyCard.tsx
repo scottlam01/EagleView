@@ -2,6 +2,7 @@ import { type DashboardData } from "../../pages/Dashboard";
 import Card from "../ui/Card";
 import styles from "./PlotlyCard.module.css";
 import Plot from "react-plotly.js";
+import { useState } from 'react';
 
 type PlotlyCardProps = {
   dashboardData: DashboardData;
@@ -10,8 +11,22 @@ type PlotlyCardProps = {
 export default function PlotlyCard ({dashboardData,
   }: PlotlyCardProps) {
 
-    const chartData = dashboardData.all_cbsa.map((cbsa) => ({
-    ...cbsa,}));
+    const [selectedState, setSelectedState] = useState("ALL");
+
+    // get available states from chartData
+    const availableStates = [
+      ...new Set(
+        dashboardData.all_cbsa.map((cbsa) => cbsa.prim_state)
+      ),
+    ].sort();
+
+    // chartData
+    const chartData =
+    selectedState === "ALL"
+      ? dashboardData.all_cbsa
+      : dashboardData.all_cbsa.filter(
+          (cbsa) => cbsa.prim_state === selectedState
+        );
 
     // used to calculate sizing for area bubbles
     const maxEmployment = Math.max(
@@ -51,6 +66,22 @@ export default function PlotlyCard ({dashboardData,
 
     return (
     <Card className={styles.chartCard}>
+
+      <h1>Salary vs Demand</h1>
+
+      <select
+        value={selectedState}
+        onChange={(e) => setSelectedState(e.target.value)}
+      >
+        <option value="ALL">All States</option>
+
+        {availableStates.map((state) => (
+          <option key={state} value={state}>
+            {state}
+          </option>
+        ))}
+      </select>
+
       <div className={styles.chartContainer}>
         <Plot
           data={[
@@ -93,14 +124,6 @@ export default function PlotlyCard ({dashboardData,
             },
           ]}
           layout={{
-            title: {
-              text: "Salary vs Demand by CBSA",
-              font: {
-                size: 20,
-              },
-              x: 0.5,
-              xanchor: "center",
-            },
             xaxis: {
               title: {
                 text: "Demand Score",

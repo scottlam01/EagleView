@@ -1,16 +1,25 @@
 .page {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #F5F7FA;
+}
+
+.summaryCard h2 {
+  font-size: 1rem;
 }
 
 .dashboard {
+  background-color: #FDFDFD;  
   display: flex;
   flex: 1;
   flex-direction: column;
   overflow-y: auto;
   margin: 0 10rem;
   gap: 1rem;
+  padding: 1rem 0.5rem;
 }
+
 
 .header {
   margin-bottom: 2rem;
