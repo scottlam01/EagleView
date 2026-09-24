@@ -15,6 +15,11 @@ export default function Searchbar () {
     area_title: string;
   }
 
+  // these flags indicate user is done selecting, so when they click the result, 
+  // it doesn't cause another fetch since the intial query changed to the result
+  const [isSelectingOccupation, setIsSelectingOccupation] = useState(false);
+  const [isSelectingArea, setIsSelectingArea] = useState(false);
+
   const [queryOccupation, setQueryOccupation] = useState("");
   const [queryAreas, setQueryAreas] = useState("");
 
@@ -31,6 +36,12 @@ export default function Searchbar () {
 
   // fetch occupations as user types
   useEffect(() => {
+    // if fetch is from user selecting a dropdown option, don't fetch
+    if (isSelectingOccupation) {
+      setIsSelectingOccupation(false);
+      return;
+    }
+
     const timer = setTimeout(() => {
       fetchOccupations(queryOccupation);
     }, 100);
@@ -40,6 +51,13 @@ export default function Searchbar () {
 
   // fetch areas as user types
   useEffect(() => {
+
+    // if fetch is from user selecting a dropdown option, don't fetch
+    if (isSelectingArea) {
+      setIsSelectingArea(false);
+      return;
+    }
+
     const timer = setTimeout(() => {
       fetchAreas(queryAreas);
     }, 100);
@@ -166,6 +184,7 @@ useEffect(() => {
               <li
                 key={occupation.occ_code}
                 onMouseDown={() => {
+                  setIsSelectingOccupation(true);
                   setQueryOccupation(occupation.occ_title);
                   setSelectedOccCode(occupation.occ_code);
                   console.log(selectedOccCode);
@@ -196,6 +215,7 @@ useEffect(() => {
               <li
                 key={areas.cbsa_code}
                 onMouseDown={() => {
+                  setIsSelectingArea(true);
                   setQueryAreas(areas.area_title);
                   setSelectedCbsaCode(areas.cbsa_code);
                   setAreaSuggestions([]);

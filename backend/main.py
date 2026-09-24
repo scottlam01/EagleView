@@ -162,6 +162,7 @@ def get_detail_data(occ_code: str, cbsa_code: int):
       SELECT
           j.cbsa_code,
           a.area_title,
+          a.prim_state,
 
           j.tot_emp,
           j.jobs_1000,
@@ -193,22 +194,23 @@ def get_detail_data(occ_code: str, cbsa_code: int):
     data.append({
       "cbsa_code": row[0],
       "area_title": row[1],
+      "prim_state": row[2],
 
       "demand": {
-          "tot_emp": row[2],
-          "jobs_1000": row[3],
-          "loc_quotient": row[4]
+          "tot_emp": row[3],
+          "jobs_1000": row[4],
+          "loc_quotient": row[5]
       },
 
       "salary": {
-          "a_median": row[5],
-          "a_pct25": row[6],
-          "a_pct75": row[7]
+          "a_median": row[6],
+          "a_pct25": row[7],
+          "a_pct75": row[8]
       },
 
       "cost": {
-          "rpp_all": row[8],
-          "rpp_housing": row[9]
+          "rpp_all": row[9],
+          "rpp_housing": row[10]
       }
     })
 

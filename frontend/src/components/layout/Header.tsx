@@ -18,9 +18,12 @@ export default function Header () {
       <header className = {styles.header}>
         <img onClick = {handleLogoClick} src={logo} className={styles.logo} alt="Logo" />
 
-        <div className = {styles.search}>
-          <Searchbar />
-        </div>
+        <Searchbar/>
+
+        <button className={styles.methodologyButton}
+          onClick={() => navigate("/methodology")}>
+          Methodology
+        </button>
       </header>
 
       {/* line break */}

@@ -1,9 +1,10 @@
 .header {
   min-height: 5rem;
   position: relative;
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   padding: 1rem 2rem;
+  background-color: #FDFDFD;
 }
 
 .logo {
@@ -12,6 +13,12 @@
 
 .search {
   position: absolute;
-  left: 50%;
   transform: translateX(-50%);
+}
+
+.methodologyButton {
+  text-align: right;
+  justify-self: end;
+  width: 10rem;
+  text-align: center;
 }

@@ -57,6 +57,7 @@ export type Scores = {
   export type AllCbsa = {
     cbsa_code: number;
     area_title: string;
+    prim_state: string;
 
     demand: {
       tot_emp: number;
