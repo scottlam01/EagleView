@@ -28,6 +28,7 @@ def root():
 
 # ======= Routes =======
 # -- Occupations --
+# search for occupations by title
 @app.get("/occupations")
 def get_jobs(q: str):
   conn = get_connection()
