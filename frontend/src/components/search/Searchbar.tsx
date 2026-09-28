@@ -3,8 +3,14 @@ import { useNavigate } from "react-router-dom";
 import styles from './Searchbar.module.css';
 import { toast } from "sonner";
 import { AnimatePresence, motion } from "motion/react";
+import { TextInput, ActionIcon, useMantineTheme } from '@mantine/core';
+
+import { IconSearch } from '@tabler/icons-react';
 
 export default function Searchbar () {
+
+  // sets mantine theme
+  const theme = useMantineTheme();
 
   type Occupation = {
     occ_code: string;
@@ -406,7 +412,9 @@ useEffect(() => {
 
   return ( 
     <div className = {styles.searchbarContainer}>
-      <div tabIndex={-1} onBlur={() => setOccupationSuggestions([])} className = {styles.occupationSearchContainer}>
+
+      <div tabIndex={-1} onBlur={() => setOccupationSuggestions([])} 
+      className = {styles.occupationSearchContainer}>
 
         <div className={styles.inputContainer}>
           <AnimatePresence mode="wait">
@@ -424,49 +432,37 @@ useEffect(() => {
             )}
           </AnimatePresence>
 
-          <input
+          <TextInput
+            styles={{
+              input: {
+                font: 'inherit',
+                borderRadius: '22px 0 0 22px',
+              },
+            }}
             type="text"
             value={queryOccupation}
             placeholder=""
-            onChange={(e) => setQueryOccupation(e.target.value)}
+            onChange={(e) => setQueryOccupation(e.currentTarget.value)}
             onFocus={() => {
               setIsOccupationFocused(true);
               fetchOccupations(queryOccupation);
             }}
             onBlur={() => setIsOccupationFocused(false)}
           />
+
         </div>
-        
-        {/* Only show the dropdown if there is at least one suggestion */}
-        {occupationSuggestions.length > 0 && (
-          <ul className={styles.dropdown}>
-            {occupationSuggestions.map((occupation) => (
-              <li
-                key={occupation.occ_code}
-                onMouseDown={() => {
-                  setIsSelectingOccupation(true);
-                  setQueryOccupation(occupation.occ_title);
-                  setSelectedOccCode(occupation.occ_code);
-                  console.log(selectedOccCode);
-                  setOccupationSuggestions([]);
-                }}
-              >
-                {occupation.occ_title}
-              </li>
-            ))}
-          </ul>
-        )}
 
     </div>
 
-    <div tabIndex={-1} onBlur={() => setAreaSuggestions([])}  className = {styles.areaSearchContainer}>
+    <div tabIndex={-1} onBlur={() => setAreaSuggestions([])}  
+    className = {styles.areaSearchContainer}>
 
       <div className={styles.inputContainer}>
         <AnimatePresence mode="wait">
           {!queryAreas && !isAreaFocused && (
             <motion.span
               key={idleAreaIndex}
-              className={styles.idleText}
+              className={`${styles.idleText} ${styles.idleAreaText}`}
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -20, opacity: 0 }}
@@ -477,45 +473,82 @@ useEffect(() => {
           )}
         </AnimatePresence>
 
-        <input
-          type="text"
+        <TextInput
+          styles={{
+            input: {
+              font: 'inherit',
+              borderRadius: '0 22px 22px 0',
+              paddingRight: '50px',
+            },
+          }}
           value={queryAreas}
           placeholder=""
-          onChange={(e) => setQueryAreas(e.target.value)}
+          onChange={(e) => setQueryAreas(e.currentTarget.value)}
           onFocus={() => {
             setIsAreaFocused(true);
             fetchAreas(queryAreas);
           }}
           onBlur={() => setIsAreaFocused(false)}
+          rightSection={
+            <ActionIcon
+              style={{
+                backgroundColor: '#2563EB'
+              }}
+              size={32}
+              radius="xl"
+              variant="filled"
+              aria-label="Search area"
+              onClick={handleSearch}
+            >
+              <IconSearch size={18} stroke={1.5}  />
+            </ActionIcon>
+          }
         />
+
       </div>
-
-
-      {/* Only show the dropdown if there is at least one suggestion */}
-        {areaSuggestions.length > 0 && (
-          <ul className={styles.dropdown}>
-            {areaSuggestions.map((areas) => (
-              <li
-                key={areas.cbsa_code}
-                onMouseDown={() => {
-                  setIsSelectingArea(true);
-                  setQueryAreas(areas.area_title);
-                  setSelectedCbsaCode(areas.cbsa_code);
-                  setAreaSuggestions([]);
-                }}
-              >
-                {areas.area_title}
-              </li>
-            ))}
-          </ul>
-        )}
-
       
     </div>
+
+    {/* occupation dropdown */}
+    {occupationSuggestions.length > 0 && (
+      <ul className={styles.dropdown}>
+        {occupationSuggestions.map((occupation) => (
+          <li
+            key={occupation.occ_code}
+            onMouseDown={() => {
+              setIsSelectingOccupation(true);
+              setQueryOccupation(occupation.occ_title);
+              setSelectedOccCode(occupation.occ_code);
+              console.log(selectedOccCode);
+              setOccupationSuggestions([]);
+            }}
+          >
+            {occupation.occ_title}
+          </li>
+        ))}
+      </ul>
+    )}
+
+    {/* area dropdown */}
+    {areaSuggestions.length > 0 && (
+      <ul className={styles.dropdown}>
+        {areaSuggestions.map((areas) => (
+          <li
+            key={areas.cbsa_code}
+            onMouseDown={() => {
+              setIsSelectingArea(true);
+              setQueryAreas(areas.area_title);
+              setSelectedCbsaCode(areas.cbsa_code);
+              setAreaSuggestions([]);
+            }}
+          >
+            {areas.area_title}
+          </li>
+        ))}
+      </ul>
+    )}
+
     
-    <button onClick={handleSearch}>
-      :D
-    </button>
     
     </div>
   )

@@ -3,16 +3,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  width: auto; /* Search width, 15rem + Occupation width 17.4rem */
 }
 
-input {
-   /* center horizontally */
-  display: block;
-  margin: 0;
-
-  width: 15rem;
-  padding: .25rem;
-  background-color: white;
+.occupationSearchContainer {
+  position: relative;
+  width: 20rem;
+}
+.areaSearchContainer {
+  position: relative;
+  width: 22.4rem;
 }
 
 .inputContainer {
@@ -23,7 +24,7 @@ input {
 
 .idleText{
   position: absolute;
-  left: 4px;
+  left: 16px;
   right: 4px;
   top: 0;
   bottom: 0;
@@ -34,26 +35,25 @@ input {
 
   pointer-events: none;
   white-space: nowrap;
+  z-index: 2;
 
   color: #adb5bd;
 }
 
-.occupationSearchContainer {
-  position: relative;
-}
-.areaSearchContainer {
-  position: relative;
+.idleAreaText {
+  left: 8px;
+  right: 50px;
 }
 
 .dropdown {
   position: absolute;
-  top: 100%;
-  left: 0;
+  top: calc(100% + 2px);
 
-  width: 200%;
+  width: 100%;
   margin: 0;
   padding: 0;
   list-style: none;
+  border-radius: 22px;
 
   max-height: 15rem;
   overflow-y: auto;
@@ -75,3 +75,4 @@ button {
   height: 2.4rem;
   width: 2.4rem;
 }
+
