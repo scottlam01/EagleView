@@ -10,15 +10,42 @@
 }
 
 .dashboard {
-  background-color: #FDFDFD;  
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  overflow-y: auto;
+  grid-template-columns: repeat(5, 1fr);
+  background-color: #ffffff;  
+  display: grid;
   margin: 0 10rem;
   gap: 1rem;
   padding: 1rem 0.5rem;
+  min-height: 80vh;
 }
+
+.summaryCardContainer {
+  grid-column: span 3;
+}
+
+.summaryCard {
+  height: auto;
+}
+
+.highlightsCardContainer {
+  grid-column: span 2;
+}
+
+.scoreCardContainer {
+  grid-column: span 2;
+  height: 55vh;
+}
+
+.plotlyCardContainer {
+  grid-column: span 3;
+}
+
+.marketDetailsCardContainer {
+  grid-column: span 5;
+}
+
+
+
 
 
 .header {

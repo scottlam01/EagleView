@@ -137,22 +137,29 @@ export function Dashboard() {
 
       <div className={styles.dashboard}>
 
-        <SummaryCard
-        dashboardData={dashboardData}
-        occupation={occupation}
-        area={area}/>
+        <div className={styles.summaryCardContainer}>
+          <SummaryCard
+          dashboardData={dashboardData}
+          occupation={occupation}
+          area={area}/>
+        </div>
 
-        <div className={styles.HighlightsCardContainer}>
+        <div className={styles.highlightsCardContainer}>
           <HighlightsCard dashboardData={dashboardData}></HighlightsCard>
         </div>
 
-        <PlotlyCard dashboardData={dashboardData}></PlotlyCard>
-
-        <ScoreCard dashboardData={dashboardData}></ScoreCard>
-
-        <MarketDetailsCard dashboardData={dashboardData}></MarketDetailsCard>
-
-        <></>
+        <div className={styles.scoreCardContainer}>
+          <ScoreCard dashboardData={dashboardData}></ScoreCard>
+        </div>
+        
+        <div className={styles.plotlyCardContainer}>
+          <PlotlyCard dashboardData={dashboardData}></PlotlyCard>
+        </div>
+        
+        <div className={styles.marketDetailsCardContainer}>
+          <MarketDetailsCard dashboardData={dashboardData}></MarketDetailsCard>
+        </div>
+        
         
       </div>
     

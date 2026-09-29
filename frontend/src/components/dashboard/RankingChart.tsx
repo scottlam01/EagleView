@@ -1,4 +1,5 @@
 import { type DashboardData} from "../../pages/Dashboard";
+import styles from "./RankingChart.module.css";
 
 type RankingChartProps = {
   dashboardData: DashboardData;
@@ -46,7 +47,7 @@ export default function RankingChart(
   console.log(rankedCbsa);
   
   return (
-    <div>
+    <div className={styles.rankingChart}>
       
       <h3>Top 5</h3>
       
