@@ -1,39 +1,40 @@
 .highlightsCard {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  padding: 0;
 }
 
 .highlight {
-  text-align: center;
+  padding: 5px 5px;
+  grid-template-columns: span 1;
+  text-align: left;
   position: relative;
 }
 
-.tooltip {
-  font-size: 1rem;
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  width: 15rem;
-
-  background: white;
-  color: black;
-
-  padding: 5px;
-  border: 1px solid #E5E7EB;
-
-  opacity: 0;
-  transform: translateX(-50%) translateY(10px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-
-  pointer-events: none; /* moving mouse over where tooltip should be doesn't bring up tooltip */
-}
-
-.highlight:hover .tooltip {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
 .highlight:not(:last-child) {
-  border-right: 2px solid #E5E7EB;
+  position: relative;
 }
 
+.highlight:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 10px;
+  bottom: 10px;
+  border-right: 1px solid #E5E7EB;
+}
+
+.number {
+  color: #2563EB;
+  font-size: 115%;
+  font-weight:800;
+}
+
+.title {
+  font-size: 105%;
+  font-weight:600;
+}
+
+.explanation {
+  font-size: 80%;
+}

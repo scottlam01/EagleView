@@ -1,0 +1,41 @@
+.ringsCard {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ringsContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+}
+
+.opportunityContainer {
+  grid-row: span 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.opportunityRing {
+  justify-self: center;
+}
+
+.ringsContainer {
+  grid-row: span 1;
+  height: auto;
+}
+
+.smallRingContainer {
+  display: flex;
+}
+
+.ringName {
+  display: flex;
+}
+
+h1 {
+  align-self: center;
+}

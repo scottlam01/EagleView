@@ -121,6 +121,7 @@ def get_detail_data(occ_code: str, cbsa_code: int):
   cur.execute("""
       SELECT
           o.occ_title,
+          o.definition,
           a.area_title,
           j.tot_emp,
           j.jobs_1000,
@@ -281,17 +282,18 @@ def get_detail_data(occ_code: str, cbsa_code: int):
         "cbsa_code": cbsa_code,
         "occ_code": occ_code,
         "occ_title": q1row[0],
-        "area_title": q1row[1],
-        "tot_emp": q1row[2],
-        "jobs_1000": q1row[3],
-        "loc_quotient": q1row[4],
-        "h_median": q1row[5],
-        "a_pct25": q1row[6],
-        "a_median": q1row[7],
-        "a_pct75": q1row[8],
-        "real_salary": round(q1row[9], 2) if q1row[9] is not None else None,
-        "rpp_all": q1row[10],
-        "rpp_housing": q1row[11]
+        "occ_definition": q1row[1],
+        "area_title": q1row[2],
+        "tot_emp": q1row[3],
+        "jobs_1000": q1row[4],
+        "loc_quotient": q1row[5],
+        "h_median": q1row[6],
+        "a_pct25": q1row[7],
+        "a_median": q1row[8],
+        "a_pct75": q1row[9],
+        "real_salary": round(q1row[10], 2) if q1row[10] is not None else None,
+        "rpp_all": q1row[11],
+        "rpp_housing": q1row[12]
     },
 
     "scores": {

@@ -50,9 +50,9 @@ $$
 Opportunity\ Score =
 0.40(\text{Salary Score})
 +
-0.35(\text{Demand Score})
+0.40(\text{Demand Score})
 +
-0.25(\text{Cost Score})
+0.20(\text{Cost Score})
 $$
 
 Each Salary, Demand, and Cost component is normalized to a common 0–100 scale before being combined. The weights reflect the relative importance assigned to each factor in evaluating it’s Opportunity Score.
