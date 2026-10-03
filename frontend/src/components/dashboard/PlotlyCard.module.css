@@ -1,6 +1,66 @@
+/* Mantine picker */
+.control {
+  width: 200px;
+  height: 44px;
+  margin-right: auto;
+  box-sizing: border-box;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--mantine-spacing-xs) var(--mantine-spacing-md) !important;
+  border-radius: var(--mantine-radius-xl);
+  border: 1px solid var(--mantine-color-gray-1) !important;
+  background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-6));
+  box-shadow: var(--mantine-shadow-sm);
+  &[data-expanded] {
+    background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-5));
+  }
+
+  @mixin hover {
+    background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-5));
+  }
+}
+
+.dropdown {
+  border-radius: var(--mantine-radius-lg) !important;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.label {
+  font-weight: 500;
+  font-size: var(--mantine-font-size-sm);
+}
+
+.icon {
+  transition: transform 150ms ease;
+  transform: rotate(0deg);
+
+  [data-expanded] & {
+    transform: rotate(180deg);
+  }
+}
+/* ------------------- */
+
 .chartCard {
   height: 55vh;
   text-align: center;
+}
+
+.chartTitle {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 110%;
+  font-weight: 700;
+}
+
+.chartHeader {
+  position: relative;
+  display: flex;
+  align-items: center;
+  z-index: 2;
 }
 
 .chartContainer {

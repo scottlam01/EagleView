@@ -10,8 +10,6 @@ type SummaryCardProps = {
 
 export default function SummaryCard({
   dashboardData,
-  occupation,
-  area
 }: SummaryCardProps) {
 
   return (
