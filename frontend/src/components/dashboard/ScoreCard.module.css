@@ -1,7 +1,52 @@
+.root {
+  background-color: white;
+  box-shadow: var(--mantine-shadow-md);
+  border: 1px solid light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-4));
+}
+
+.indicator {
+  background-image: linear-gradient(
+    to right,
+    #2563EB,
+    #60A5FA
+  );
+}
+
+.control {
+  &::before {
+    display: none;
+  }
+}
+
+.label {
+  color: var(--mantine-color-dark-9);
+  &,
+  &:hover {
+    &[data-active] {
+      color: var(--mantine-color-white);
+    }
+  }
+}
+
+.findAreaButton:hover {
+  background-image: linear-gradient(
+    to right,
+    #2563EB,
+    #60A5FA
+  );
+}
+
+.findAreaButton:hover span {
+  color: white;
+}
+
 .tabsContainer {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.scoreCard{
+  overflow-y: auto;
 }
 
 .scoreCardContent{
@@ -9,7 +54,12 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  margin: 2rem;
+  margin: 0.5rem;
+}
+
+.areaTitle {
+  font-size: 105%rem;
+  font-weight: 700;
 }
 
 .tab,

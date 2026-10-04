@@ -21,4 +21,20 @@
   justify-self: end;
   width: 10rem;
   text-align: center;
+
+  background-color: white;
+  box-shadow: var(--mantine-shadow-md);
+  border: 1px solid light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-4));
+}
+
+.methodologyButton:hover {
+  background-image: linear-gradient(
+    to right,
+    #2563EB,
+    #60A5FA
+  );
+}
+
+.methodologyButton:hover span {
+  color: white;
 }

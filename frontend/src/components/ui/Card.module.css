@@ -1,10 +1,12 @@
 .card {
   background-color: #FFFFFF;
 
-  border: 1px solid #E5E7EB;
+  border: 1px solid #E2E8F0;
   border-radius: 12px;
 
-  padding: 1.5rem;
+  padding: 1rem;
+
+  height: 100%;
 
   box-shadow:
     0 2px 6px rgba(0, 0, 0, 0.04);

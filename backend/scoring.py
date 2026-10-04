@@ -228,8 +228,8 @@ def calculate_cost_score(cbsa_data):
 -- Weights for opportunity score may change
 Opportunity Score =
   (0.4 * Salary) +
-  (0.35 * Demand) +
-  (0.25 * Cost)
+  (0.4 * Demand) +
+  (0.2 * Cost)
 '''
 def calculate_opportunity_score(cbsa_data):
 
@@ -237,8 +237,8 @@ def calculate_opportunity_score(cbsa_data):
       
       scores = [
             (city["demand_score"], 0.4),
-            (city["salary_score"], 0.35),
-            (city["cost_score"], 0.25)
+            (city["salary_score"], 0.4),
+            (city["cost_score"], 0.2)
         ]
 
       weighted_scores = [

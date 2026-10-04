@@ -2,6 +2,7 @@ import { type DashboardData} from "../../pages/Dashboard";
 import Card from "../ui/Card";
 import styles from "./MarketDetailsCard.module.css";
 import { useState } from "react";
+import { IconChevronUp, IconChevronDown } from '@tabler/icons-react';
 
 type MarketDetailsCardProps = {
   dashboardData: DashboardData;
@@ -31,7 +32,11 @@ export default function MarketDetailsCard ({dashboardData,
           <div className = {styles.marketDetailsHeader} 
               onClick={() => setIsMarketDetailsOpen(!isMarketDetailsOpen)}>
               <div className={styles.chevron}>
-                {isMarketDetailsOpen ? "▲" : "▼"}
+                {isMarketDetailsOpen ? (
+                  <IconChevronUp size={18} />
+                ) : (
+                  <IconChevronDown size={18} />
+                )}
               </div>
                 Market Details
           </div>

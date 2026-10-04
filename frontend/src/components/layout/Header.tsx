@@ -2,6 +2,7 @@ import styles from './Header.module.css';
 import logo from '../../assets/logo_crop.png';
 import Searchbar from '../../components/search/Searchbar';
 import { useNavigate } from "react-router-dom";
+import { Button } from '@mantine/core';
 
 export default function Header () {
 
@@ -20,10 +21,24 @@ export default function Header () {
 
         <Searchbar/>
 
-        <button className={styles.methodologyButton}
-          onClick={() => navigate("/methodology")}>
+        <Button
+          size="md"
+          radius="xl"
+          variant="outline" 
+          color="gray"
+          className={styles.methodologyButton}
+          onClick={() => navigate("/methodology")}
+          styles={{
+            root: {
+              borderColor: 'var(--mantine-color-gray-1)',
+              color: 'var(--mantine-color-dark-6)',
+              boxShadow: 'var(--mantine-shadow-md)',
+            },
+          }}
+        >
           Methodology
-        </button>
+        </Button>
+
       </header>
 
       {/* line break */}

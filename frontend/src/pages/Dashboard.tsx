@@ -9,6 +9,7 @@ import ScoreCard from '../components/dashboard/ScoreCard';
 import Card from '../components/ui/Card';
 import PlotlyCard from '../components/dashboard/PlotlyCard';
 import MarketDetailsCard from '../components/dashboard/MarketDetailsCard';
+import ScoreRingsCard from '../components/dashboard/ScoreRingsCard';
 
 // collectively holds all dashboard data
 export type DashboardData = {
@@ -22,6 +23,7 @@ export type CurCbsa = {
   cbsa_code: number;
   occ_code: string;
   occ_title: string;
+  occ_definition: string;
   area_title: string;
   tot_emp: number;
   jobs_1000: number;
@@ -137,22 +139,33 @@ export function Dashboard() {
 
       <div className={styles.dashboard}>
 
-        <SummaryCard
-        dashboardData={dashboardData}
-        occupation={occupation}
-        area={area}/>
+        <div className={styles.scoreRingsCardContainer}>
+          <ScoreRingsCard dashboardData={dashboardData}></ScoreRingsCard>
+        </div>
 
-        <div className={styles.HighlightsCardContainer}>
+        <div className={styles.summaryCardContainer}>
+          <SummaryCard
+          dashboardData={dashboardData}
+          occupation={occupation}
+          area={area}/>
+        </div>
+
+        <div className={styles.highlightsCardContainer}>
           <HighlightsCard dashboardData={dashboardData}></HighlightsCard>
         </div>
 
-        <PlotlyCard dashboardData={dashboardData}></PlotlyCard>
-
-        <ScoreCard dashboardData={dashboardData}></ScoreCard>
-
-        <MarketDetailsCard dashboardData={dashboardData}></MarketDetailsCard>
-
-        <></>
+        <div className={styles.scoreCardContainer}>
+          <ScoreCard dashboardData={dashboardData}></ScoreCard>
+        </div>
+        
+        <div className={styles.plotlyCardContainer}>
+          <PlotlyCard dashboardData={dashboardData}></PlotlyCard>
+        </div>
+        
+        <div className={styles.marketDetailsCardContainer}>
+          <MarketDetailsCard dashboardData={dashboardData}></MarketDetailsCard>
+        </div>
+        
         
       </div>
     

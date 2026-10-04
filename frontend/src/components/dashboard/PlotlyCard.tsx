@@ -3,6 +3,9 @@ import Card from "../ui/Card";
 import styles from "./PlotlyCard.module.css";
 import Plot from "react-plotly.js";
 import { useState } from 'react';
+import { Menu, UnstyledButton } from "@mantine/core";
+import { IconChevronDown } from "@tabler/icons-react";
+import classes from './PlotlyCard.module.css';
 
 type PlotlyCardProps = {
   dashboardData: DashboardData;
@@ -12,6 +15,7 @@ export default function PlotlyCard ({dashboardData,
   }: PlotlyCardProps) {
 
     const [selectedState, setSelectedState] = useState("ALL");
+    const [opened, setOpened] = useState(false);
 
     // get available states from chartData
     const availableStates = [
@@ -39,7 +43,15 @@ export default function PlotlyCard ({dashboardData,
     .map(c => c.demand.tot_emp)
     .sort((a, b) => a - b);
 
-    
+    // create menu items
+    const stateItems = availableStates.map((state) => (
+      <Menu.Item
+        key={state}
+        onClick={() => setSelectedState(state)}
+      >
+        {state}
+      </Menu.Item>
+    ));    
 
     function getEmploymentPercentile(emp: number) {
       const count = sortedEmployment.filter(v => v <= emp).length;
@@ -67,20 +79,40 @@ export default function PlotlyCard ({dashboardData,
     return (
     <Card className={styles.chartCard}>
 
-      <h1>Salary vs Demand</h1>
+      <div className={styles.chartHeader}>
+        
+        <Menu
+          onOpen={() => setOpened(true)}
+          onClose={() => setOpened(false)}
+          radius="md"
+          width="target"
+          withinPortal
+        >
+          <Menu.Target>
+            <UnstyledButton
+              className={classes.control}
+              data-expanded={opened || undefined}>
+              <span>
+                {selectedState === "ALL" ? "All States" : selectedState}
+              </span>
+              <IconChevronDown
+                size={16}
+                className={styles.icon}
+                stroke={1.5}
+              />
+            </UnstyledButton>
+          </Menu.Target>
+          <Menu.Dropdown className={styles.dropdown}>
+            <Menu.Item onClick={() => setSelectedState("ALL")}>
+              All States
+            </Menu.Item>
+            {stateItems}
+          </Menu.Dropdown>
+        </Menu>
 
-      <select
-        value={selectedState}
-        onChange={(e) => setSelectedState(e.target.value)}
-      >
-        <option value="ALL">All States</option>
+        <h1 className={styles.chartTitle}>Salary vs Demand</h1>
 
-        {availableStates.map((state) => (
-          <option key={state} value={state}>
-            {state}
-          </option>
-        ))}
-      </select>
+      </div>
 
       <div className={styles.chartContainer}>
         <Plot
@@ -88,7 +120,20 @@ export default function PlotlyCard ({dashboardData,
             {
               x: chartData.map(c => c.demand_score),
               y: chartData.map(c => c.salary_score),
-              text: chartData.map(c => c.area_title),
+              hovertemplate:
+                "<span style='font-size: 16px'> %{customdata[0]}</span><br>" +
+                "<span style='font-size: 18px'>Opportunity Score: %{customdata[1]}</span><br>" +
+                "────────────────────<br>" +
+                "<span style='font-size: 14px'>Demand Score: %{x}</span><br>" +
+                "<span style='font-size: 14px'>Salary Score: %{customdata[2]}</span><br>" +
+                "<span style='font-size: 14px'>Cost Score: %{customdata[3]}</span><br>" +
+                "<extra></extra>",
+              customdata: chartData.map(c => [
+                c.area_title,
+                c.opportunity_score,
+                c.salary_score,
+                c.cost_score,
+              ]),
               mode: "markers",
               type: "scatter",
               marker: {
@@ -124,6 +169,10 @@ export default function PlotlyCard ({dashboardData,
             },
           ]}
           layout={{
+            font: {
+              family: "Nunito Sans, sans-serif",
+              size: 14,
+            },
             xaxis: {
               title: {
                 text: "Demand Score",

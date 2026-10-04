@@ -3,34 +3,57 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-input {
-   /* center horizontally */
-  display: block;
-  margin: 0;
-
-  width: 15rem;
-  padding: .25rem;
-  background-color: white;
+  position: relative;
+  width: auto; /* Search width, 15rem + Occupation width 17.4rem */
 }
 
 .occupationSearchContainer {
   position: relative;
+  width: 20rem;
 }
 .areaSearchContainer {
   position: relative;
+  width: 22.4rem;
+}
+
+.inputContainer {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.idleText{
+  position: absolute;
+  left: 16px;
+  right: 4px;
+  top: 0;
+  bottom: 0;
+
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 2;
+
+  color: #adb5bd;
+}
+
+.idleAreaText {
+  left: 8px;
+  right: 50px;
 }
 
 .dropdown {
   position: absolute;
-  top: 100%;
-  left: 0;
+  top: calc(100% + 2px);
 
-  width: 200%;
+  width: 100%;
   margin: 0;
   padding: 0;
   list-style: none;
+  border-radius: 22px;
 
   max-height: 15rem;
   overflow-y: auto;
@@ -52,3 +75,4 @@ button {
   height: 2.4rem;
   width: 2.4rem;
 }
+

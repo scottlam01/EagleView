@@ -1,0 +1,8 @@
+Error no data found with 
+    http://localhost:5173/dashboard/11640/51-9061
+
+Shows no salary
+    http://localhost:5173/dashboard/31080/29-1011
+
+Use mantine left arrow and down arrow to expand market details
+

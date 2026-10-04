@@ -25,35 +25,47 @@ export default function HighlightsCard({
 
   return (
     <Card className={styles.highlightsCard}>
-      <p className={styles.highlight}>Median Salary<br/>{formatCurrency(dashboardData.cur_cbsa.a_median)}
-        <span className={styles.tooltip}>
+
+      <div className={styles.highlight}>
+        <p className={styles.number}>{formatCurrency(dashboardData.cur_cbsa.a_median)}</p>
+        <p className={styles.title}>Median Salary</p>
+        <p className={styles.explanation}>
           Typical annual salary for this occupation in this metro area.
-        </span>
-      </p>
+        </p>
+      </div>
 
-      <p className={styles.highlight}>Real Salary<br/>{formatCurrency(dashboardData.cur_cbsa.real_salary)}
-        <span className={styles.tooltip}>
-          Adjusted annual median salary based on local cost of living. Calculated as median salary divided by the Cost Index (RPP ÷ 100) to estimate purchasing power in this metro area.
-        </span>
-      </p>
+      <div className={styles.highlight}>
+        <p className={styles.number}>{formatCurrency(dashboardData.cur_cbsa.real_salary)}</p>
+        <p className={styles.title}>Real Salary</p>
+        <p className={styles.explanation}>
+          Adjusted median salary based on local cost of living, calculated using the Cost Index.
+        </p>
+      </div>
 
-      <p className={styles.highlight}>Total Employment<br/>{dashboardData.cur_cbsa.tot_emp} jobs
-        <span className={styles.tooltip}>
-          Total number of people currently employed in this occupation within this metro area.
-        </span>
-      </p>
+      <div className={styles.highlight}>
+        <p className={styles.number}>{dashboardData.cur_cbsa.tot_emp.toLocaleString()}</p>
+        <p className={styles.title}>Total Employment</p>
+        <p className={styles.explanation}>
+          Total number of people employed in this occupation within this metro area.
+        </p>
+      </div>
 
-      <p className={styles.highlight}>Job Density<br/>{dashboardData.cur_cbsa.jobs_1000}  jobs per 1,000
-        <span className={styles.tooltip}>
-          Number of workers in this occupation per 1,000 jobs in the local economy. Higher values mean the occupation is more concentrated here.
-        </span>
-      </p>
+      <div className={styles.highlight}>
+        <p className={styles.number}>{dashboardData.cur_cbsa.jobs_1000.toFixed(2)}</p>
+        <p className={styles.title}>Jobs per 1,000</p>
+        <p className={styles.explanation}>
+          Number of workers in this occupation per 1,000 jobs in the local economy. Higher values indicate greater concentration in the area.
+        </p>
+      </div>
 
-      <p className={styles.highlight}>Cost Index<br/>{dashboardData.cur_cbsa.rpp_all}
-        <span className={styles.tooltip}>
-          Measures local prices compared to the U.S. average. A value of 100 represents the national average. Values lower than 100 are less than national average, values higher than 100 are higher than national average.
-        </span>
-      </p>
+      <div className={styles.highlight}>
+        <p className={styles.number}>{dashboardData.cur_cbsa.rpp_all.toFixed(1)}</p>
+        <p className={styles.title}>Cost Index</p>
+        <p className={styles.explanation}>
+          Local prices compared to the U.S. average. 100 is average; below 100 is lower, above 100 is higher.
+        </p>
+      </div>
+
     </Card>
   );
 
