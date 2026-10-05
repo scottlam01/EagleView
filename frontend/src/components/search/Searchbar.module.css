@@ -6,7 +6,6 @@
   position: relative;
   width: auto; /* Search width, 15rem + Occupation width 17.4rem */
   height: fit-content;
-  box-shadow: var(--mantine-shadow-md);
   border-radius: 22px;
 }
 
@@ -35,10 +34,20 @@
   height: 23px;
 }
 
-.inputContainer {
+.occupationInputContainer, .areaInputContainer {
   position: relative;
   overflow: hidden;
   height: 100%;
+  
+}
+
+.occupationInputContainer {
+  border-radius: 22px 0 0 22px;
+  box-shadow: var(--mantine-shadow-md);
+}
+.areaInputContainer {
+  border-radius: 0 22px 22px 0;
+  box-shadow: var(--mantine-shadow-md);
 }
 
 .idleText{

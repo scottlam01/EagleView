@@ -413,7 +413,7 @@ useEffect(() => {
       <div tabIndex={-1} onBlur={() => setOccupationSuggestions([])} 
       className = {styles.occupationSearchContainer}>
 
-        <div className={styles.inputContainer}>
+        <div className={styles.occupationInputContainer}>
           <AnimatePresence mode="wait">
             {!queryOccupation && !isOccupationFocused && (
               <motion.span
@@ -459,7 +459,7 @@ useEffect(() => {
         Tip: Type a full state name to view all CBSA areas in that state.
       </div>
 
-      <div className={styles.inputContainer}>
+      <div className={styles.areaInputContainer}>
         <AnimatePresence mode="wait">
           {!queryAreas && !isAreaFocused && (
             <motion.span

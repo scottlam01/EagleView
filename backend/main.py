@@ -15,7 +15,10 @@ app.add_middleware(
 # Allows frontend (React on localhost:5173) to communicate with 
 # this backend API from a different origin (different ports)
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[
+        "http://localhost:5173",
+        "https://eagleview-career.vercel.app/",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
