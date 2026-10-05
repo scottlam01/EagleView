@@ -9,6 +9,8 @@ import { IconSearch } from '@tabler/icons-react';
 
 export default function Searchbar () {
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   type Occupation = {
     occ_code: string;
     occ_title: string;
@@ -336,7 +338,7 @@ const handleSearch = async () => {
   }
 
   const response = await fetch(
-  `http://localhost:8000/validate_search?cbsa_code=${selectedCbsaCode}&occ_code=${selectedOccCode}`
+  `${API_URL}/validate_search?cbsa_code=${selectedCbsaCode}&occ_code=${selectedOccCode}`
   );
 
   const data = await response.json();
@@ -381,7 +383,7 @@ useEffect(() => {
     }
     try {
       const response = await fetch(
-        `http://localhost:8000/occupations?q=${encodeURIComponent(query)}`
+        `${API_URL}/occupations?q=${encodeURIComponent(query)}`
       );
       const data = await response.json();
       setOccupationSuggestions(data);
@@ -398,7 +400,7 @@ useEffect(() => {
     }
     try {
       const response = await fetch(
-        `http://localhost:8000/areas?q=${encodeURIComponent(query)}`
+        `${API_URL}/areas?q=${encodeURIComponent(query)}`
       );
       const data = await response.json();
       setAreaSuggestions(data);
