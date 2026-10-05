@@ -1,7 +1,7 @@
 import Card from "../ui/Card";
 import styles from "./ScoreCard.module.css";
 import { type DashboardData } from "../../pages/Dashboard";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import RankingChart from "./RankingChart";
 import { Button, SegmentedControl } from '@mantine/core';
 import classes from './ScoreCard.module.css';

@@ -1,5 +1,5 @@
 import styles from './Header.module.css';
-import logo from '../../assets/logo_crop.png';
+import logo from '../../assets/logo_updated.png';
 import Searchbar from '../../components/search/Searchbar';
 import { useNavigate } from "react-router-dom";
 import { Button } from '@mantine/core';

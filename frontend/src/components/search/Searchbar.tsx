@@ -3,14 +3,11 @@ import { useNavigate } from "react-router-dom";
 import styles from './Searchbar.module.css';
 import { toast } from "sonner";
 import { AnimatePresence, motion } from "motion/react";
-import { TextInput, ActionIcon, useMantineTheme } from '@mantine/core';
+import { TextInput, ActionIcon } from '@mantine/core';
 
 import { IconSearch } from '@tabler/icons-react';
 
 export default function Searchbar () {
-
-  // sets mantine theme
-  const theme = useMantineTheme();
 
   type Occupation = {
     occ_code: string;

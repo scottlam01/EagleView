@@ -32,12 +32,6 @@ export default function PlotlyCard ({dashboardData,
           (cbsa) => cbsa.prim_state === selectedState
         );
 
-    // used to calculate sizing for area bubbles
-    const maxEmployment = Math.max(
-      ...chartData.map(c => c.demand.tot_emp)
-    );
-    const sizeref = 2 * maxEmployment / (50 ** 2); // "100" desired maximum bubble diameter in pixels
-
     // sorted employment values
     const sortedEmployment = chartData
     .map(c => c.demand.tot_emp)

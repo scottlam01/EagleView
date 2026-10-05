@@ -1,5 +1,4 @@
 import { type DashboardData} from "../../pages/Dashboard";
-import styles from "./RankingChart.module.css";
 import { useState } from 'react';
 import { IconChevronDown, IconChevronUp, IconSearch, IconSelector } from '@tabler/icons-react';
 import {

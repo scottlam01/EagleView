@@ -6,7 +6,6 @@ import { useParams, useLocation } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import HighlightsCard from '../components/dashboard/HighlightsCard';
 import ScoreCard from '../components/dashboard/ScoreCard';
-import Card from '../components/ui/Card';
 import PlotlyCard from '../components/dashboard/PlotlyCard';
 import MarketDetailsCard from '../components/dashboard/MarketDetailsCard';
 import ScoreRingsCard from '../components/dashboard/ScoreRingsCard';
