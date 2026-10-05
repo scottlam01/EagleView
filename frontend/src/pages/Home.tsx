@@ -1,4 +1,4 @@
-import logo from '../assets/logo_crop.png';
+import logo from '../assets/logo_updated.png';
 import Footer from '../components/layout/Footer';
 import Searchbar from '../components/search/Searchbar';
 import styles from './Home.module.css';
