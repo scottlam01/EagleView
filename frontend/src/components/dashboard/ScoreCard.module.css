@@ -28,7 +28,7 @@
   }
 }
 
-.findAreaButton:hover {
+.findAreaButton:not(:disabled):hover {
   background-image: linear-gradient(
     to right,
     #2563EB,

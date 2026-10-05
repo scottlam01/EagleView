@@ -1,6 +1,15 @@
 .footer {
-  padding: 2rem 0;
   background-color: #FDFDFD;
+  align-items: center;
+  min-height: 3.5rem;
+}
+
+.dataDisclaimer {
+  background-color: #FDFDFD;
+  text-align: center;
+  color: #64748B;
+  font-size: 0.85rem;
+  padding: 0.5rem 0;
 }
 
 .text {

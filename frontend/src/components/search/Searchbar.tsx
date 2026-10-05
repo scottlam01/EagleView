@@ -445,6 +445,7 @@ useEffect(() => {
             onChange={(e) => setQueryOccupation(e.currentTarget.value)}
             onFocus={() => {
               setIsOccupationFocused(true);
+              setIsAreaFocused(false);
               fetchOccupations(queryOccupation);
             }}
             onBlur={() => setIsOccupationFocused(false)}
@@ -456,6 +457,10 @@ useEffect(() => {
 
     <div tabIndex={-1} onBlur={() => setAreaSuggestions([])}  
     className = {styles.areaSearchContainer}>
+      
+      <div className={styles.areaTip}>
+        Tip: Type a full state name to view all CBSA areas in that state.
+      </div>
 
       <div className={styles.inputContainer}>
         <AnimatePresence mode="wait">
@@ -486,6 +491,7 @@ useEffect(() => {
           onChange={(e) => setQueryAreas(e.currentTarget.value)}
           onFocus={() => {
             setIsAreaFocused(true);
+            setIsOccupationFocused(false);
             fetchAreas(queryAreas);
           }}
           onBlur={() => setIsAreaFocused(false)}

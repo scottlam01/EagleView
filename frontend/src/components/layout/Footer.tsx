@@ -6,6 +6,10 @@ export default function Footer () {
       {/* line break */}
       <hr className = {styles.greyLine}></hr>
 
+      <div className={styles.dataDisclaimer}>
+        Data note: Analysis is based on 2023 BLS and BEA data and may not reflect current market conditions.
+      </div>
+
       {/* footer */}
       <footer className = {styles.footer}>
           <div className = {styles.text}>

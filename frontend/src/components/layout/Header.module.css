@@ -5,6 +5,7 @@
   grid-template-columns: 1fr 1fr 1fr;
   padding: 1rem 2rem;
   background-color: #FDFDFD;
+  align-items: center;
 }
 
 .logo {

@@ -41,7 +41,7 @@ function Th({ children, reversed, sorted, onSort, style }: ThProps) {
   return (
     <Table.Th className={classes.th} style={style}>
       <UnstyledButton onClick={onSort} className={classes.control}>
-        <Group justify="space-between">
+        <Group justify="space-between" wrap="nowrap">
           <Text fw={500} fz="sm">
             {children}
           </Text>
@@ -166,7 +166,7 @@ export default function RankingChart(
               sorted={sortBy === 'rank'}
               reversed={reverseSortDirection}
               onSort={() => setSorting('rank')}
-              style={{ width: '25%' }}
+              style={{ width: '20%' }}
             >
               Rank
             </Th>
@@ -174,7 +174,7 @@ export default function RankingChart(
               sorted={sortBy === 'cbsa'}
               reversed={reverseSortDirection}
               onSort={() => setSorting('cbsa')}
-              style={{ width: '50%' }}
+              style={{ width: '60%' }}
             >
               CBSA
             </Th>
@@ -182,6 +182,7 @@ export default function RankingChart(
               sorted={sortBy === 'score'}
               reversed={reverseSortDirection}
               onSort={() => setSorting('score')}
+              style={{ width: '20%' }}
             >
               Score
             </Th>
