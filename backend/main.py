@@ -1,8 +1,8 @@
 from fastapi import FastAPI
-from backend.database import get_connection
+from database import get_connection
 from fastapi.middleware.cors import CORSMiddleware
-from backend.states import STATE_MAP, STATE_NAMES
-from backend.scoring import (
+from states import STATE_MAP, STATE_NAMES
+from scoring import (
   calculate_demand_score,
   calculate_salary_score,
   calculate_cost_score,
