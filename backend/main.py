@@ -141,8 +141,8 @@ def get_detail_data(occ_code: str, cbsa_code: int):
           r.rpp_housing
 
       FROM jobs j
-      JOIN rpp r
-          ON j.cbsa_code = r.cbsa_code
+      LEFT JOIN rpp r
+        ON j.cbsa_code = r.cbsa_code
       JOIN occupations o
           ON j.occ_code = o.occ_code
       JOIN areas a
@@ -182,7 +182,7 @@ def get_detail_data(occ_code: str, cbsa_code: int):
       JOIN areas a
           ON j.cbsa_code = a.cbsa_code
 
-      JOIN rpp r
+      LEFT JOIN rpp r
           ON j.cbsa_code = r.cbsa_code
 
       WHERE j.occ_code = %s;

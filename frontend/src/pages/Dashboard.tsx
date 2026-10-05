@@ -10,6 +10,7 @@ import Card from '../components/ui/Card';
 import PlotlyCard from '../components/dashboard/PlotlyCard';
 import MarketDetailsCard from '../components/dashboard/MarketDetailsCard';
 import ScoreRingsCard from '../components/dashboard/ScoreRingsCard';
+import { Loader, Center } from '@mantine/core';
 
 // collectively holds all dashboard data
 export type DashboardData = {
@@ -125,9 +126,18 @@ export function Dashboard() {
 
   }, [cbsa_code, occ_code]);
 
+  // loading screen while dashboard data is being fetched
   if (!dashboardData) {
-    return <div>Loading...</div>;
-  }
+  return (
+    <Center h="100vh">
+      <Loader
+        color="#2563EB"
+        type="bars"
+        size="lg"
+      />
+    </Center>
+  );
+}
 
   console.log(dashboardData);
   // returns all demand, salary, or cost scores as dictionary with pairs {cbsa: score}

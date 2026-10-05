@@ -21,6 +21,14 @@ export default function ScoreCard({
     "Demand" | "Salary" | "Cost"
   >("Demand");
 
+  // check if score is available for the selected tab
+  const isScoreAvailable =
+  selectedTab === "Demand"
+    ? dashboardData.scores.demand_score !== null
+    : selectedTab === "Salary"
+      ? dashboardData.scores.salary_score !== null
+      : dashboardData.scores.cost_score !== null;
+
   return (
   <Card className={styles.scoreCard}>
     <div className={styles.tabsContainer}>
@@ -38,6 +46,7 @@ export default function ScoreCard({
         }}
       />
       <Button
+        disabled={!isScoreAvailable}
         size="md"
         radius="xl"
         variant="outline" 
@@ -68,7 +77,9 @@ export default function ScoreCard({
           {dashboardData.cur_cbsa.area_title}
         </div>
         <div>
-          Outperforms {dashboardData.scores.demand_percentile}% of metros — Score: {dashboardData.scores.demand_score}
+          {dashboardData.scores.demand_percentile !== null
+          ? `Outperforms ${dashboardData.scores.demand_percentile}% of metros — Score: ${dashboardData.scores.demand_score}`
+          : "Score unavailable — required data is missing for this metro area."}
         </div>
         <RankingChart dashboardData={dashboardData} scoreType={"demand_score"} ></RankingChart>
       </div>
@@ -80,7 +91,9 @@ export default function ScoreCard({
           {dashboardData.cur_cbsa.area_title}
         </div>
         <div>
-          Outperforms {dashboardData.scores.salary_percentile}% of metros — Score: {dashboardData.scores.salary_score}
+          {dashboardData.scores.salary_percentile !== null
+          ? `Outperforms ${dashboardData.scores.salary_percentile}% of metros — Score: ${dashboardData.scores.salary_score}`
+          : "Score unavailable — required data is missing for this metro area."}
         </div>
         <RankingChart dashboardData={dashboardData} scoreType={"salary_score"} ></RankingChart>
       </div>
@@ -92,7 +105,9 @@ export default function ScoreCard({
           {dashboardData.cur_cbsa.area_title}
         </div>
         <div>
-          Outperforms {dashboardData.scores.cost_percentile}% of metros — Score: {dashboardData.scores.cost_score}
+          {dashboardData.scores.cost_percentile !== null
+          ? `Outperforms ${dashboardData.scores.cost_percentile}% of metros — Score: ${dashboardData.scores.cost_score}`
+          : "Score unavailable — required data is missing for this metro area."}
         </div>
         <RankingChart dashboardData={dashboardData} scoreType={"cost_score"} ></RankingChart>
       </div>

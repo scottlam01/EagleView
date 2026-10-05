@@ -19,6 +19,18 @@ export function formatCurrency(value: number | null): string {
   });
 }
 
+// formats numbers, returns N/A if null
+export function formatNumber(
+  value: number | null,
+  decimals: number = 0
+): string {
+  if (value === null) {
+    return "N/A";
+  }
+
+  return value.toFixed(decimals);
+}
+
 export default function HighlightsCard({
   dashboardData,
 }: HighlightsCardProps){
@@ -43,7 +55,7 @@ export default function HighlightsCard({
       </div>
 
       <div className={styles.highlight}>
-        <p className={styles.number}>{dashboardData.cur_cbsa.tot_emp.toLocaleString()}</p>
+        <p className={styles.number}>{formatNumber(dashboardData.cur_cbsa.tot_emp)}</p>
         <p className={styles.title}>Total Employment</p>
         <p className={styles.explanation}>
           Total number of people employed in this occupation within this metro area.
@@ -51,7 +63,7 @@ export default function HighlightsCard({
       </div>
 
       <div className={styles.highlight}>
-        <p className={styles.number}>{dashboardData.cur_cbsa.jobs_1000.toFixed(2)}</p>
+        <p className={styles.number}>{formatNumber(dashboardData.cur_cbsa.jobs_1000, 2)}</p>
         <p className={styles.title}>Jobs per 1,000</p>
         <p className={styles.explanation}>
           Number of workers in this occupation per 1,000 jobs in the local economy. Higher values indicate greater concentration in the area.
@@ -59,7 +71,7 @@ export default function HighlightsCard({
       </div>
 
       <div className={styles.highlight}>
-        <p className={styles.number}>{dashboardData.cur_cbsa.rpp_all.toFixed(1)}</p>
+        <p className={styles.number}>{formatNumber(dashboardData.cur_cbsa.rpp_all, 1)}</p>
         <p className={styles.title}>Cost Index</p>
         <p className={styles.explanation}>
           Local prices compared to the U.S. average. 100 is average; below 100 is lower, above 100 is higher.

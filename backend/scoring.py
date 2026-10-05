@@ -66,20 +66,14 @@ def calculate_demand_score(cbsa_data):
         norm_jobs_1000,
         norm_loc_q
     ]
-    # create a list of scores that only includes not null values
-    valid_scores = [
-      score for score in scores
-      if score is not None
-    ]
-
-    if len(valid_scores) > 0:
-    # adds demand score to cbsa_data rounded whole
-      city["demand_score"] = round(
-          sum(valid_scores) / len(valid_scores),
-          1
-      )
+    # If any required value is missing, the entire score is unavailable
+    if any(score is None for score in scores):
+        city["demand_score"] = None
     else:
-      city["demand_score"] = None
+        city["demand_score"] = round(
+            sum(scores) / len(scores),
+            1
+        )
 
   return cbsa_data
 
@@ -144,19 +138,15 @@ def calculate_salary_score(cbsa_data):
         norm_pct25,
         norm_pct75
       ]
-      # create a list of scores that only includes not null values
-      valid_scores = [
-          score for score in scores
-          if score is not None
-      ]
-
-      if len(valid_scores) > 0:
-          city["salary_score"] = round(
-              sum(valid_scores) / len(valid_scores),
-              1
-          )
+      
+      if any(score is None for score in scores):
+        city["salary_score"] = None
       else:
-          city["salary_score"] = None
+        city["salary_score"] = round(
+          sum(scores) / len(scores),
+          1
+        )
+ 
 
   return cbsa_data
 
@@ -204,22 +194,16 @@ def calculate_cost_score(cbsa_data):
           norm_rpp,
           norm_housing
       ]
-      # create a list of scores that only includes not null values
-      valid_cost_values = [
-          value for value in cost_values
-          if value is not None
-      ]
-
-      if len(valid_cost_values) > 0:
-        avg_cost = sum(valid_cost_values) / len(valid_cost_values)
+      if any(value is None for value in cost_values):
+        city["cost_score"] = None
+      else:
+        avg_cost = sum(cost_values) / len(cost_values)
 
         # Higher cost = lower score, so invert
         city["cost_score"] = round(
             100 - avg_cost,
             1
         )
-      else:
-        city["cost_score"] = None
 
   return cbsa_data
 
@@ -235,26 +219,21 @@ def calculate_opportunity_score(cbsa_data):
 
   for city in cbsa_data:
       
-      scores = [
-            (city["demand_score"], 0.4),
-            (city["salary_score"], 0.4),
-            (city["cost_score"], 0.2)
-        ]
+    scores = [
+        city["demand_score"],
+        city["salary_score"],
+        city["cost_score"]
+    ]
 
-      weighted_scores = [
-          score * weight
-          for score, weight in scores
-          if score is not None
-      ]
-
-      # adds opportunity score to cbsa_data rounded whole
-      if weighted_scores:
-          city["opportunity_score"] = round(
-              sum(weighted_scores),
-              1
-          )
-      else:
-          city["opportunity_score"] = None
+    if any(score is None for score in scores):
+        city["opportunity_score"] = None
+    else:
+        city["opportunity_score"] = round(
+            (city["demand_score"] * 0.4)
+            + (city["salary_score"] * 0.4)
+            + (city["cost_score"] * 0.2),
+            1
+        )
 
   return cbsa_data
 
