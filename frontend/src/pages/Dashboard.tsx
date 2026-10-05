@@ -11,6 +11,8 @@ import MarketDetailsCard from '../components/dashboard/MarketDetailsCard';
 import ScoreRingsCard from '../components/dashboard/ScoreRingsCard';
 import { Loader, Center } from '@mantine/core';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 // collectively holds all dashboard data
 export type DashboardData = {
   cur_cbsa: CurCbsa;
@@ -113,7 +115,7 @@ export function Dashboard() {
       if (!cbsa_code || !occ_code) return;
 
       const response = await fetch(
-        `http://localhost:8000/dashboard/${occ_code}/${cbsa_code}`
+        `${API_URL}/dashboard/${occ_code}/${cbsa_code}`
       );
 
       const data = await response.json();
