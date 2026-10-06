@@ -14,6 +14,11 @@ export function Home() {
 
         <Searchbar />
 
+        <p className={styles.initialSearchNote}>
+        The first search may take up to a minute while the server wakes up.
+        Subsequent searches should be faster.
+        </p>
+
       </section>
 
       {/* Footer */}

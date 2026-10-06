@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# ignore env
+.env
+
 # ignore pycache
 *.pyc
 
