@@ -2,7 +2,9 @@
 <h1>EagleView</h1>
 <p>EagleView is a full-stack career intelligence platform for comparing career opportunities across U.S. metropolitan areas.  It uses data from occupation data from BEA and cost data from BLS to create general scores for different geographical regions called CBSAs.  </p>
 
-<a href="eagleview-career.vercel.app">EagleView </a>
+<a href="https://eagleview-career.vercel.app">EagleView<br>
+  <img src="docs/dashboard.PNG" alt="EagleView Dashboard" width="900">
+</a>
 
 </div>
 
